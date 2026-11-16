@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 
 // Definimos la estructura de la respuesta del backend
