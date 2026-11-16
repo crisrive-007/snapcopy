@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+export const dynamic = 'force-dynamic';
+
 export default function SubscriptionPage() {
   const [loading, setLoading] = useState(false);
 
@@ -44,7 +46,7 @@ export default function SubscriptionPage() {
 
       <div className="grid md:grid-cols-2 gap-6">
         <div className="p-6 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-          <h3 className="font-semibold text-lg mb-2">Plan Starter</h3>
+          <h3 className="font-semibold text-lg mb-2 text-zinc-900 dark:text-white">Plan Starter</h3>
           <p className="text-sm text-zinc-500 mb-4">$9/mes - 100 créditos</p>
           <button
             onClick={() => handleCheckout(process.env.NEXT_PUBLIC_STRIPE_STARTER_PRICE_ID!)}
@@ -56,7 +58,7 @@ export default function SubscriptionPage() {
         </div>
 
         <div className="p-6 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
-          <h3 className="font-semibold text-lg mb-2">Plan Pro</h3>
+          <h3 className="font-semibold text-lg mb-2 text-zinc-900 dark:text-white">Plan Pro</h3>
           <p className="text-sm text-zinc-500 mb-4">$19/mes - 300 créditos</p>
           <button
             onClick={() => handleCheckout(process.env.NEXT_PUBLIC_STRIPE_PRO_PRICE_ID!)}
@@ -69,12 +71,12 @@ export default function SubscriptionPage() {
       </div>
 
       <div className="p-6 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-50 dark:bg-zinc-900/50">
-        <h3 className="font-semibold text-lg mb-2">Gestionar suscripción</h3>
+        <h3 className="font-semibold text-lg mb-2 text-zinc-900 dark:text-white">Gestionar suscripción</h3>
         <p className="text-sm text-zinc-500 mb-4">¿Ya tienes un plan? Gestiona tu método de pago o cancela desde aquí.</p>
         <button
           onClick={handlePortal}
           disabled={loading}
-          className="border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 px-4 py-2 rounded-lg transition"
+          className="border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-900 dark:text-white px-4 py-2 rounded-lg transition text-sm"
         >
           Ir al portal de cliente
         </button>
