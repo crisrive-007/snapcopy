@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 
-export const dynamic = 'force-dynamic';
-
 export default function SubscriptionPage() {
   const [loading, setLoading] = useState(false);
 

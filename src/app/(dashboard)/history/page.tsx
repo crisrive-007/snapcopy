@@ -1,10 +1,9 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import { HistoryClient } from '@/components/history/history-client';
+import { Suspense } from 'react';
 
-export const dynamic = 'force-dynamic';
-
-export default async function HistoryPage() {
+async function HistoryContent() {
   const supabase = await createClient();
 
   const {
@@ -15,12 +14,16 @@ export default async function HistoryPage() {
     redirect('/login');
   }
 
-  const { data: generations, error } = await supabase
+  const { data: generations } = await supabase
     .from('generations')
     .select('*')
     .eq('user_id', user.id)
     .order('created_at', { ascending: false });
 
+  return <HistoryClient generations={generations || []} />;
+}
+
+export default function HistoryPage() {
   return (
     <div className="space-y-6">
       <div>
@@ -31,7 +34,9 @@ export default async function HistoryPage() {
           Revisa y copia tus generaciones pasadas.
         </p>
       </div>
-      <HistoryClient generations={generations || []} />
+      <Suspense fallback={<div className="text-zinc-500 py-8 text-center">Cargando historial...</div>}>
+        <HistoryContent />
+      </Suspense>
     </div>
   );
 }
